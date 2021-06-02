@@ -9,12 +9,22 @@
 /* Begin PBXBuildFile section */
 		E01E171E266676E100C98386 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01E171D266676E100C98386 /* AppDelegate.swift */; };
 		E01E1720266676E100C98386 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01E171F266676E100C98386 /* SceneDelegate.swift */; };
-		E01E1722266676E100C98386 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01E1721266676E100C98386 /* ViewController.swift */; };
-		E01E1725266676E100C98386 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E01E1723266676E100C98386 /* Main.storyboard */; };
+		E01E1722266676E100C98386 /* TopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01E1721266676E100C98386 /* TopListViewController.swift */; };
 		E01E1727266676E100C98386 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E01E1726266676E100C98386 /* Assets.xcassets */; };
 		E01E172A266676E100C98386 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E01E1728266676E100C98386 /* LaunchScreen.storyboard */; };
 		E01E1735266676E100C98386 /* CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01E1734266676E100C98386 /* CryptoTests.swift */; };
 		E01E1740266676E100C98386 /* CryptoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01E173F266676E100C98386 /* CryptoUITests.swift */; };
+		E01E175726667A4F00C98386 /* CoinResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01E175626667A4F00C98386 /* CoinResponse.swift */; };
+		E01E175926667B2100C98386 /* NewsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01E175826667B2100C98386 /* NewsResponse.swift */; };
+		E01E175B26667D0000C98386 /* CryptoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01E175A26667D0000C98386 /* CryptoService.swift */; };
+		E01E175D26667D5000C98386 /* NetworkDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01E175C26667D5000C98386 /* NetworkDataStore.swift */; };
+		E076B14926678D0700EFF2BA /* UIViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B14826678D0700EFF2BA /* UIViewHelper.swift */; };
+		E076B14B26678E6700EFF2BA /* UIStackViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B14A26678E6700EFF2BA /* UIStackViewHelper.swift */; };
+		E076B1502667BB4F00EFF2BA /* CoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B14F2667BB4F00EFF2BA /* CoinCell.swift */; };
+		E076B1522667BB8800EFF2BA /* TopListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B1512667BB8800EFF2BA /* TopListPresenter.swift */; };
+		E076B1542667BE7B00EFF2BA /* ErrorStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B1532667BE7B00EFF2BA /* ErrorStateCell.swift */; };
+		E076B1562667BEF500EFF2BA /* RequestStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B1552667BEF500EFF2BA /* RequestStateCell.swift */; };
+		E076B1582667C00500EFF2BA /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B1572667C00500EFF2BA /* ViewState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,8 +48,7 @@
 		E01E171A266676E100C98386 /* Crypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E01E171D266676E100C98386 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E01E171F266676E100C98386 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E01E1721266676E100C98386 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E01E1724266676E100C98386 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E01E1721266676E100C98386 /* TopListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopListViewController.swift; sourceTree = "<group>"; };
 		E01E1726266676E100C98386 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E01E1729266676E100C98386 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E01E172B266676E100C98386 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +58,17 @@
 		E01E173B266676E100C98386 /* CryptoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E01E173F266676E100C98386 /* CryptoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoUITests.swift; sourceTree = "<group>"; };
 		E01E1741266676E100C98386 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E01E175626667A4F00C98386 /* CoinResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinResponse.swift; sourceTree = "<group>"; };
+		E01E175826667B2100C98386 /* NewsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsResponse.swift; sourceTree = "<group>"; };
+		E01E175A26667D0000C98386 /* CryptoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoService.swift; sourceTree = "<group>"; };
+		E01E175C26667D5000C98386 /* NetworkDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataStore.swift; sourceTree = "<group>"; };
+		E076B14826678D0700EFF2BA /* UIViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewHelper.swift; sourceTree = "<group>"; };
+		E076B14A26678E6700EFF2BA /* UIStackViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewHelper.swift; sourceTree = "<group>"; };
+		E076B14F2667BB4F00EFF2BA /* CoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCell.swift; sourceTree = "<group>"; };
+		E076B1512667BB8800EFF2BA /* TopListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopListPresenter.swift; sourceTree = "<group>"; };
+		E076B1532667BE7B00EFF2BA /* ErrorStateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorStateCell.swift; sourceTree = "<group>"; };
+		E076B1552667BEF500EFF2BA /* RequestStateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestStateCell.swift; sourceTree = "<group>"; };
+		E076B1572667C00500EFF2BA /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +119,10 @@
 		E01E171C266676E100C98386 /* Crypto */ = {
 			isa = PBXGroup;
 			children = (
-				E01E171D266676E100C98386 /* AppDelegate.swift */,
-				E01E171F266676E100C98386 /* SceneDelegate.swift */,
-				E01E1721266676E100C98386 /* ViewController.swift */,
-				E01E1723266676E100C98386 /* Main.storyboard */,
+				E01E17502666799000C98386 /* Common */,
+				E01E174F2666798900C98386 /* Data */,
+				E01E174E2666798400C98386 /* Scenes */,
+				E01E174D2666797A00C98386 /* Application */,
 				E01E1726266676E100C98386 /* Assets.xcassets */,
 				E01E1728266676E100C98386 /* LaunchScreen.storyboard */,
 				E01E172B266676E100C98386 /* Info.plist */,
@@ -126,6 +146,112 @@
 				E01E1741266676E100C98386 /* Info.plist */,
 			);
 			path = CryptoUITests;
+			sourceTree = "<group>";
+		};
+		E01E174D2666797A00C98386 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				E01E17512666799900C98386 /* Base Delegate */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		E01E174E2666798400C98386 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				E01E1752266679D300C98386 /* Top List */,
+				E01E1753266679DA00C98386 /* News */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		E01E174F2666798900C98386 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				E01E175526667A4000C98386 /* Model */,
+				E01E175426667A3800C98386 /* Service */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		E01E17502666799000C98386 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E076B14826678D0700EFF2BA /* UIViewHelper.swift */,
+				E076B14A26678E6700EFF2BA /* UIStackViewHelper.swift */,
+				E076B1532667BE7B00EFF2BA /* ErrorStateCell.swift */,
+				E076B1552667BEF500EFF2BA /* RequestStateCell.swift */,
+				E076B1572667C00500EFF2BA /* ViewState.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		E01E17512666799900C98386 /* Base Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				E01E171D266676E100C98386 /* AppDelegate.swift */,
+				E01E171F266676E100C98386 /* SceneDelegate.swift */,
+			);
+			path = "Base Delegate";
+			sourceTree = "<group>";
+		};
+		E01E1752266679D300C98386 /* Top List */ = {
+			isa = PBXGroup;
+			children = (
+				E076B14E2667BB2A00EFF2BA /* Presenter */,
+				E076B14D2667BB2500EFF2BA /* Cell */,
+				E076B14C2667BB1D00EFF2BA /* View */,
+			);
+			path = "Top List";
+			sourceTree = "<group>";
+		};
+		E01E1753266679DA00C98386 /* News */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		E01E175426667A3800C98386 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				E01E175A26667D0000C98386 /* CryptoService.swift */,
+				E01E175C26667D5000C98386 /* NetworkDataStore.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		E01E175526667A4000C98386 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E01E175626667A4F00C98386 /* CoinResponse.swift */,
+				E01E175826667B2100C98386 /* NewsResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E076B14C2667BB1D00EFF2BA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E01E1721266676E100C98386 /* TopListViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E076B14D2667BB2500EFF2BA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E076B14F2667BB4F00EFF2BA /* CoinCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		E076B14E2667BB2A00EFF2BA /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				E076B1512667BB8800EFF2BA /* TopListPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +359,6 @@
 			files = (
 				E01E172A266676E100C98386 /* LaunchScreen.storyboard in Resources */,
 				E01E1727266676E100C98386 /* Assets.xcassets in Resources */,
-				E01E1725266676E100C98386 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,8 +383,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E01E1722266676E100C98386 /* ViewController.swift in Sources */,
+				E01E1722266676E100C98386 /* TopListViewController.swift in Sources */,
+				E076B1522667BB8800EFF2BA /* TopListPresenter.swift in Sources */,
+				E076B14B26678E6700EFF2BA /* UIStackViewHelper.swift in Sources */,
+				E076B1562667BEF500EFF2BA /* RequestStateCell.swift in Sources */,
+				E01E175926667B2100C98386 /* NewsResponse.swift in Sources */,
 				E01E171E266676E100C98386 /* AppDelegate.swift in Sources */,
+				E01E175726667A4F00C98386 /* CoinResponse.swift in Sources */,
+				E01E175D26667D5000C98386 /* NetworkDataStore.swift in Sources */,
+				E076B1582667C00500EFF2BA /* ViewState.swift in Sources */,
+				E076B1502667BB4F00EFF2BA /* CoinCell.swift in Sources */,
+				E01E175B26667D0000C98386 /* CryptoService.swift in Sources */,
+				E076B14926678D0700EFF2BA /* UIViewHelper.swift in Sources */,
+				E076B1542667BE7B00EFF2BA /* ErrorStateCell.swift in Sources */,
 				E01E1720266676E100C98386 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,14 +432,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E01E1723266676E100C98386 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E01E1724266676E100C98386 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E01E1728266676E100C98386 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
