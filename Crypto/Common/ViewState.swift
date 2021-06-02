@@ -8,7 +8,6 @@
 import Foundation
 
 public enum ViewState {
-    case initial
     case request
     case error
     case populated

@@ -18,6 +18,12 @@ final class DefaultTopListViewController: UITableViewController {
     private var coins: [CoinData] = []
     private var presenter: TopListPresenter
     
+    private(set) var state: ViewState = .request {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     init(presenter: TopListPresenter) {
         self.presenter = presenter
         super.init(style: .plain)
@@ -35,9 +41,6 @@ final class DefaultTopListViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter.fetchTopList()
-        presenter.onViewStateChanged = { [weak self] in
-            self?.tableView.reloadData()
-        }
     }
     
     private func configureTableView() {
@@ -55,6 +58,7 @@ final class DefaultTopListViewController: UITableViewController {
     }
     
     @objc private func onRefreshControlHandled() {
+        state = .request
         presenter.fetchTopList()
     }
 }
@@ -62,12 +66,13 @@ final class DefaultTopListViewController: UITableViewController {
 extension DefaultTopListViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch presenter.state {
+        switch state {
         case .error:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ErrorStateCell.identifier, for: indexPath) as? ErrorStateCell else {
                 return ErrorStateCell()
             }
             cell.reload = { [weak self] in
+                self?.state = .request
                 self?.presenter.fetchTopList()
             }
             return cell
@@ -84,21 +89,19 @@ extension DefaultTopListViewController {
             }
             
             return cell
-        default:
-            return UITableViewCell()
         }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.state == .populated ? coins.count : 1
+        return state == .populated ? coins.count : 1
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return presenter.state == .populated ? 75 : tableView.bounds.height - 50
+        return state == .populated ? 75 : tableView.bounds.height - 50
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard presenter.state == .populated else {
+        guard state == .populated else {
             return
         }
         
@@ -115,11 +118,12 @@ extension DefaultTopListViewController: TopListViewController {
     func showCoins(data: [CoinData]) {
         tableView.refreshControl?.endRefreshing()
         self.coins = data
-        tableView.reloadData()
+        self.state = .populated
     }
     
     func showErrorMessage(error: ErrorResponse) {
         tableView.refreshControl?.endRefreshing()
+        self.state = .error
         print(error.description)
     }
 }

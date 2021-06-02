@@ -25,6 +25,10 @@
 		E076B1542667BE7B00EFF2BA /* ErrorStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B1532667BE7B00EFF2BA /* ErrorStateCell.swift */; };
 		E076B1562667BEF500EFF2BA /* RequestStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B1552667BEF500EFF2BA /* RequestStateCell.swift */; };
 		E076B1582667C00500EFF2BA /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B1572667C00500EFF2BA /* ViewState.swift */; };
+		E076B15C2667C67F00EFF2BA /* TopListViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B15B2667C67F00EFF2BA /* TopListViewControllerTest.swift */; };
+		E076B15E2667CAE300EFF2BA /* TopListPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B15D2667CAE300EFF2BA /* TopListPresenterTest.swift */; };
+		E076B1612667CC7B00EFF2BA /* CryptoServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B1602667CC7B00EFF2BA /* CryptoServiceTest.swift */; };
+		E076B1642667CC8C00EFF2BA /* MockNetworkDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B1632667CC8C00EFF2BA /* MockNetworkDataStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +73,10 @@
 		E076B1532667BE7B00EFF2BA /* ErrorStateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorStateCell.swift; sourceTree = "<group>"; };
 		E076B1552667BEF500EFF2BA /* RequestStateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestStateCell.swift; sourceTree = "<group>"; };
 		E076B1572667C00500EFF2BA /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
+		E076B15B2667C67F00EFF2BA /* TopListViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopListViewControllerTest.swift; sourceTree = "<group>"; };
+		E076B15D2667CAE300EFF2BA /* TopListPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopListPresenterTest.swift; sourceTree = "<group>"; };
+		E076B1602667CC7B00EFF2BA /* CryptoServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoServiceTest.swift; sourceTree = "<group>"; };
+		E076B1632667CC8C00EFF2BA /* MockNetworkDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkDataStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +141,8 @@
 		E01E1733266676E100C98386 /* CryptoTests */ = {
 			isa = PBXGroup;
 			children = (
+				E076B15F2667CC6600EFF2BA /* Service */,
+				E076B1592667C65900EFF2BA /* Scenes */,
 				E01E1734266676E100C98386 /* CryptoTests.swift */,
 				E01E1736266676E100C98386 /* Info.plist */,
 			);
@@ -252,6 +262,40 @@
 				E076B1512667BB8800EFF2BA /* TopListPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		E076B1592667C65900EFF2BA /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				E076B15A2667C66200EFF2BA /* Top List */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		E076B15A2667C66200EFF2BA /* Top List */ = {
+			isa = PBXGroup;
+			children = (
+				E076B15B2667C67F00EFF2BA /* TopListViewControllerTest.swift */,
+				E076B15D2667CAE300EFF2BA /* TopListPresenterTest.swift */,
+			);
+			path = "Top List";
+			sourceTree = "<group>";
+		};
+		E076B15F2667CC6600EFF2BA /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				E076B1622667CC7E00EFF2BA /* Mock */,
+				E076B1602667CC7B00EFF2BA /* CryptoServiceTest.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		E076B1622667CC7E00EFF2BA /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				E076B1632667CC8C00EFF2BA /* MockNetworkDataStore.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,7 +448,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E076B1612667CC7B00EFF2BA /* CryptoServiceTest.swift in Sources */,
+				E076B15E2667CAE300EFF2BA /* TopListPresenterTest.swift in Sources */,
+				E076B15C2667C67F00EFF2BA /* TopListViewControllerTest.swift in Sources */,
 				E01E1735266676E100C98386 /* CryptoTests.swift in Sources */,
+				E076B1642667CC8C00EFF2BA /* MockNetworkDataStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
