@@ -9,6 +9,7 @@ import Foundation
 
 protocol NetworkDataStore {
     func fetchTopList(success: @escaping (CoinResponse) -> Void, failure: @escaping (ErrorResponse) -> Void)
+    func fetchNews(success: @escaping (NewsResponse) -> Void, failure: @escaping (ErrorResponse) -> Void)
 }
 
 final class DefautNetworkDataStore: NetworkDataStore {
@@ -23,7 +24,7 @@ final class DefautNetworkDataStore: NetworkDataStore {
         var URL: String {
             switch self {
             case .news:
-                return "v2/news"
+                return "v2/news/"
             default:
                 return "top/totaltoptiervolfull"
             }
@@ -60,6 +61,45 @@ final class DefautNetworkDataStore: NetworkDataStore {
                 let coinResponse = try jsonDecoder.decode(CoinResponse.self, from: data)
                 DispatchQueue.main.async {
                     success(coinResponse)
+                }
+                
+            } catch {
+                DispatchQueue.main.async {
+                    failure(.serializationError)
+                }
+            }
+        }.resume()
+    }
+    
+    func fetchNews(success: @escaping (NewsResponse) -> Void, failure: @escaping (ErrorResponse) -> Void) {
+        guard var urlComponent: URLComponents = URLComponents(string: "\(baseURL)/\(Endpoint.news.URL)") else {
+            return failure(.invalidEndpoint)
+        }
+        
+        urlComponent.queryItems = [
+            URLQueryItem(name: "lang", value: "EN")
+        ]
+        
+        let urlRequest: URLRequest = URLRequest(url: urlComponent.url!)
+        
+        urlSession.dataTask(with: urlRequest) { (data: Data?, response: URLResponse?, error: Error?) in
+            if error != nil {
+                failure(.apiError)
+            }
+            
+            guard let response = response as? HTTPURLResponse, 200..<300 ~= response.statusCode else {
+                return failure(.invalidResponse)
+            }
+            
+            guard let data = data else {
+                return failure(.noData)
+            }
+            
+            do {
+                let jsonDecoder = JSONDecoder()
+                let newsResponse = try jsonDecoder.decode(NewsResponse.self, from: data)
+                DispatchQueue.main.async {
+                    success(newsResponse)
                 }
                 
             } catch {

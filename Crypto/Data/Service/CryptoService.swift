@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 class CryptoService {
     
     private let dataStore: NetworkDataStore
@@ -28,6 +27,13 @@ class CryptoService {
         }
     }
     
+    func fetchNews(success: @escaping ([NewsData]) -> Void, failure: @escaping (ErrorResponse) -> Void) {
+        dataStore.fetchNews { (response: NewsResponse) in
+            success(response.data)
+        } failure: { (error: ErrorResponse) in
+            failure(error)
+        }
+    }
 }
 
 public enum ErrorResponse: String {

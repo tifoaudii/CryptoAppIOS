@@ -1,10 +1,9 @@
 import UIKit
 
-// MARK: - NewsResponse
 struct NewsResponse: Codable {
     let type: Int
     let message: String
-    let data: [Datum]
+    let data: [NewsData]
     let hasWarning: Bool
 
     enum CodingKeys: String, CodingKey {
@@ -16,7 +15,7 @@ struct NewsResponse: Codable {
 }
 
 // MARK: - Datum
-struct Datum: Codable {
+struct NewsData: Codable {
     let id: String
     let guid: String
     let publishedOn: Int
@@ -24,8 +23,7 @@ struct Datum: Codable {
     let title: String
     let url: String
     let source, body, tags, categories: String
-    let upvotes, downvotes: String
-    let lang: Lang
+    let upvotes, downvotes, lang: String
     let sourceInfo: SourceInfo
 
     enum CodingKeys: String, CodingKey {
@@ -36,14 +34,10 @@ struct Datum: Codable {
     }
 }
 
-enum Lang: String, Codable {
-    case en = "EN"
-}
-
 // MARK: - SourceInfo
 struct SourceInfo: Codable {
-    let name: String
-    let lang: Lang
+    let name, lang: String
     let img: String
 }
+
 
