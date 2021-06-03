@@ -84,7 +84,7 @@ final class CoinCell: UITableViewCell {
                 ]
             )
             .setAxis(.vertical)
-            .setDistribution(.fillEqually)
+            .setDistribution(.fillProportionally)
         )
     }
     
