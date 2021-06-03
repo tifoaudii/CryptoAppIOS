@@ -18,6 +18,7 @@
 		E01E175926667B2100C98386 /* NewsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01E175826667B2100C98386 /* NewsResponse.swift */; };
 		E01E175B26667D0000C98386 /* CryptoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01E175A26667D0000C98386 /* CryptoService.swift */; };
 		E01E175D26667D5000C98386 /* NetworkDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01E175C26667D5000C98386 /* NetworkDataStore.swift */; };
+		E01EF9B626687D8F00D9741D /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01EF9B526687D8F00D9741D /* NewsCell.swift */; };
 		E076B14926678D0700EFF2BA /* UIViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B14826678D0700EFF2BA /* UIViewHelper.swift */; };
 		E076B14B26678E6700EFF2BA /* UIStackViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B14A26678E6700EFF2BA /* UIStackViewHelper.swift */; };
 		E076B1502667BB4F00EFF2BA /* CoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B14F2667BB4F00EFF2BA /* CoinCell.swift */; };
@@ -29,6 +30,8 @@
 		E076B15E2667CAE300EFF2BA /* TopListPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B15D2667CAE300EFF2BA /* TopListPresenterTest.swift */; };
 		E076B1612667CC7B00EFF2BA /* CryptoServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B1602667CC7B00EFF2BA /* CryptoServiceTest.swift */; };
 		E076B1642667CC8C00EFF2BA /* MockNetworkDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B1632667CC8C00EFF2BA /* MockNetworkDataStore.swift */; };
+		E076B16A2667D2EC00EFF2BA /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B1692667D2EC00EFF2BA /* NewsViewController.swift */; };
+		E076B16D2667D4DE00EFF2BA /* NewsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B16C2667D4DE00EFF2BA /* NewsPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +69,7 @@
 		E01E175826667B2100C98386 /* NewsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsResponse.swift; sourceTree = "<group>"; };
 		E01E175A26667D0000C98386 /* CryptoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoService.swift; sourceTree = "<group>"; };
 		E01E175C26667D5000C98386 /* NetworkDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataStore.swift; sourceTree = "<group>"; };
+		E01EF9B526687D8F00D9741D /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		E076B14826678D0700EFF2BA /* UIViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewHelper.swift; sourceTree = "<group>"; };
 		E076B14A26678E6700EFF2BA /* UIStackViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewHelper.swift; sourceTree = "<group>"; };
 		E076B14F2667BB4F00EFF2BA /* CoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCell.swift; sourceTree = "<group>"; };
@@ -77,6 +81,8 @@
 		E076B15D2667CAE300EFF2BA /* TopListPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopListPresenterTest.swift; sourceTree = "<group>"; };
 		E076B1602667CC7B00EFF2BA /* CryptoServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoServiceTest.swift; sourceTree = "<group>"; };
 		E076B1632667CC8C00EFF2BA /* MockNetworkDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkDataStore.swift; sourceTree = "<group>"; };
+		E076B1692667D2EC00EFF2BA /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		E076B16C2667D4DE00EFF2BA /* NewsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +175,7 @@
 		E01E174E2666798400C98386 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				E076B1652667D2A300EFF2BA /* News Coin */,
 				E01E1752266679D300C98386 /* Top List */,
 				E01E1753266679DA00C98386 /* News */,
 			);
@@ -296,6 +303,40 @@
 				E076B1632667CC8C00EFF2BA /* MockNetworkDataStore.swift */,
 			);
 			path = Mock;
+			sourceTree = "<group>";
+		};
+		E076B1652667D2A300EFF2BA /* News Coin */ = {
+			isa = PBXGroup;
+			children = (
+				E076B1682667D2CB00EFF2BA /* Presenter */,
+				E076B1672667D2C700EFF2BA /* Cell */,
+				E076B1662667D2C300EFF2BA /* View */,
+			);
+			path = "News Coin";
+			sourceTree = "<group>";
+		};
+		E076B1662667D2C300EFF2BA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E076B1692667D2EC00EFF2BA /* NewsViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E076B1672667D2C700EFF2BA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E01EF9B526687D8F00D9741D /* NewsCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		E076B1682667D2CB00EFF2BA /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				E076B16C2667D4DE00EFF2BA /* NewsPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -430,14 +471,17 @@
 				E01E1722266676E100C98386 /* TopListViewController.swift in Sources */,
 				E076B1522667BB8800EFF2BA /* TopListPresenter.swift in Sources */,
 				E076B14B26678E6700EFF2BA /* UIStackViewHelper.swift in Sources */,
+				E076B16D2667D4DE00EFF2BA /* NewsPresenter.swift in Sources */,
 				E076B1562667BEF500EFF2BA /* RequestStateCell.swift in Sources */,
 				E01E175926667B2100C98386 /* NewsResponse.swift in Sources */,
 				E01E171E266676E100C98386 /* AppDelegate.swift in Sources */,
 				E01E175726667A4F00C98386 /* CoinResponse.swift in Sources */,
+				E076B16A2667D2EC00EFF2BA /* NewsViewController.swift in Sources */,
 				E01E175D26667D5000C98386 /* NetworkDataStore.swift in Sources */,
 				E076B1582667C00500EFF2BA /* ViewState.swift in Sources */,
 				E076B1502667BB4F00EFF2BA /* CoinCell.swift in Sources */,
 				E01E175B26667D0000C98386 /* CryptoService.swift in Sources */,
+				E01EF9B626687D8F00D9741D /* NewsCell.swift in Sources */,
 				E076B14926678D0700EFF2BA /* UIViewHelper.swift in Sources */,
 				E076B1542667BE7B00EFF2BA /* ErrorStateCell.swift in Sources */,
 				E01E1720266676E100C98386 /* SceneDelegate.swift in Sources */,
