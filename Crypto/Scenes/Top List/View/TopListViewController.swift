@@ -112,7 +112,11 @@ extension DefaultTopListViewController {
 
 extension DefaultTopListViewController: TopListViewController {
     func onCoinSelected() {
-        
+        let service = CryptoService(dataStore: DefautNetworkDataStore())
+        let presenter = DefaultNewsPresenter(service: service)
+        let newsViewController = DefaultNewsViewController(presenter: presenter)
+        presenter.setViewController(newsViewController)
+        present(newsViewController, animated: true, completion: nil)
     }
     
     func showCoins(data: [CoinData]) {
