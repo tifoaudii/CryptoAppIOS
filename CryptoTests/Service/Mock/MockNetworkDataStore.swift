@@ -24,12 +24,24 @@ class MockNetworkDataStore: NetworkDataStore {
             display: Display(usd: DisplayUsd(fromsymbol: "", tosymbol: PurpleTOSYMBOL(rawValue: "$")!, market: PurpleMARKET(rawValue: "CryptoCompare Index")!, price: "", lastvolume: "", lastvolumeto: "", lasttradeid: "", volumeday: "", volumedayto: "", volume24Hour: "", volume24Hourto: "", openday: "", highday: "", lowday: "", open24Hour: "", high24Hour: "", low24Hour: "", lastmarket: "", volumehour: "", volumehourto: "", openhour: "", highhour: "", lowhour: "", toptiervolume24Hour: "", toptiervolume24Hourto: "", change24Hour: "", changepct24Hour: "", changeday: "", changepctday: "", changehour: "", changepcthour: "", conversionsymbol: "", supply: "", mktcap: "", mktcappenalty: Mktcappenalty(rawValue: "0 %")!, totalvolume24H: "", totalvolume24Hto: "", totaltoptiervolume24H: "", totaltoptiervolume24Hto: "", imageurl: "")))
     ]
     
+    let mockNewsResponse = [
+        NewsData(id: "", guid: "", publishedOn: 10, imageurl: "", title: "", url: "", source: "", body: "", tags: "", categories: "", upvotes: "", downvotes: "", lang: "", sourceInfo: .init(name: "", lang: "", img: ""))
+    ]
+    
     let errorResponse = ErrorResponse.apiError
     
     
     func fetchTopList(success: @escaping (CoinResponse) -> Void, failure: @escaping (ErrorResponse) -> Void) {
         if testScenario == .success {
             success(CoinResponse(message: "", type: 0, metaData: MetaData(count: 0), sponsoredData: [], data: mockCoinResponse, hasWarning: false))
+        } else {
+            failure(errorResponse)
+        }
+    }
+    
+    func fetchNews(success: @escaping (NewsResponse) -> Void, failure: @escaping (ErrorResponse) -> Void) {
+        if testScenario == .success {
+            success(NewsResponse(type: 0, message: "", data: mockNewsResponse, hasWarning: false))
         } else {
             failure(errorResponse)
         }

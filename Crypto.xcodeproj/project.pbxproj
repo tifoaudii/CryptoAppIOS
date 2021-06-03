@@ -19,6 +19,8 @@
 		E01E175B26667D0000C98386 /* CryptoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01E175A26667D0000C98386 /* CryptoService.swift */; };
 		E01E175D26667D5000C98386 /* NetworkDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01E175C26667D5000C98386 /* NetworkDataStore.swift */; };
 		E01EF9B626687D8F00D9741D /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01EF9B526687D8F00D9741D /* NewsCell.swift */; };
+		E01EF9B9266886B200D9741D /* NewsViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01EF9B8266886B200D9741D /* NewsViewControllerTest.swift */; };
+		E01EF9BB266886BF00D9741D /* NewsPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01EF9BA266886BF00D9741D /* NewsPresenterTest.swift */; };
 		E076B14926678D0700EFF2BA /* UIViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B14826678D0700EFF2BA /* UIViewHelper.swift */; };
 		E076B14B26678E6700EFF2BA /* UIStackViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B14A26678E6700EFF2BA /* UIStackViewHelper.swift */; };
 		E076B1502667BB4F00EFF2BA /* CoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E076B14F2667BB4F00EFF2BA /* CoinCell.swift */; };
@@ -70,6 +72,8 @@
 		E01E175A26667D0000C98386 /* CryptoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoService.swift; sourceTree = "<group>"; };
 		E01E175C26667D5000C98386 /* NetworkDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataStore.swift; sourceTree = "<group>"; };
 		E01EF9B526687D8F00D9741D /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
+		E01EF9B8266886B200D9741D /* NewsViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewControllerTest.swift; sourceTree = "<group>"; };
+		E01EF9BA266886BF00D9741D /* NewsPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPresenterTest.swift; sourceTree = "<group>"; };
 		E076B14826678D0700EFF2BA /* UIViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewHelper.swift; sourceTree = "<group>"; };
 		E076B14A26678E6700EFF2BA /* UIStackViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewHelper.swift; sourceTree = "<group>"; };
 		E076B14F2667BB4F00EFF2BA /* CoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCell.swift; sourceTree = "<group>"; };
@@ -247,6 +251,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		E01EF9B7266886A200D9741D /* News */ = {
+			isa = PBXGroup;
+			children = (
+				E01EF9B8266886B200D9741D /* NewsViewControllerTest.swift */,
+				E01EF9BA266886BF00D9741D /* NewsPresenterTest.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
 		E076B14C2667BB1D00EFF2BA /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +287,7 @@
 		E076B1592667C65900EFF2BA /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				E01EF9B7266886A200D9741D /* News */,
 				E076B15A2667C66200EFF2BA /* Top List */,
 			);
 			path = Scenes;
@@ -492,9 +506,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E01EF9BB266886BF00D9741D /* NewsPresenterTest.swift in Sources */,
 				E076B1612667CC7B00EFF2BA /* CryptoServiceTest.swift in Sources */,
 				E076B15E2667CAE300EFF2BA /* TopListPresenterTest.swift in Sources */,
 				E076B15C2667C67F00EFF2BA /* TopListViewControllerTest.swift in Sources */,
+				E01EF9B9266886B200D9741D /* NewsViewControllerTest.swift in Sources */,
 				E01E1735266676E100C98386 /* CryptoTests.swift in Sources */,
 				E076B1642667CC8C00EFF2BA /* MockNetworkDataStore.swift in Sources */,
 			);

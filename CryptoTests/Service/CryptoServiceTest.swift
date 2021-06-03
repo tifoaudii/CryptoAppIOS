@@ -39,5 +39,16 @@ class CryptoServiceTest: XCTestCase {
             XCTAssert(!coins.isEmpty)
         } failure: { _ in }
     }
+    
+    func testServiceFetchNews() {
+        // Given
+        let mockDataStore = MockNetworkDataStore(testScenario: .success)
+        sut = CryptoService(dataStore: mockDataStore)
+        
+        // Then
+        sut.fetchNews { news in
+            XCTAssert(!news.isEmpty)
+        } failure: { _ in }
+    }
 
 }
