@@ -2,7 +2,7 @@
 //  NetworkDataStore.swift
 //  Crypto
 //
-//  Created by ruangguru on 01/06/21.
+//  Created by Tifo Audi Alif Putra on 01/06/21.
 //
 
 import Foundation
@@ -63,7 +63,7 @@ final class DefautNetworkDataStore: NetworkDataStore {
                     success(coinResponse)
                 }
                 
-            } catch {
+            } catch let error {
                 DispatchQueue.main.async {
                     failure(.serializationError)
                 }

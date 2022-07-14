@@ -2,7 +2,7 @@
 //  CoinCell.swift
 //  Crypto
 //
-//  Created by ruangguru on 02/06/21.
+//  Created by Tifo Audi Alif Putra on 02/06/21.
 //
 
 import UIKit
@@ -92,8 +92,8 @@ final class CoinCell: UITableViewCell {
         coinCodeLabel.text = coin.coinInfo.name
         coinNameLabel.text = coin.coinInfo.fullName
         
-        let price: Double = coin.raw.usd.price
-        let openDay: Double = coin.raw.usd.openday
+        let price: Double = coin.raw?.usd.price ?? 0.0
+        let openDay: Double = coin.raw?.usd.openday ?? 0.0
         let updatePrice: Double = round((price - openDay) * 100) / 100
         let percentageUpdatePrice: Double = round((updatePrice / openDay) * 10000) / 100
         let symbolUpdate: String = (price < openDay) ? "" : "+"

@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  Crypto
 //
-//  Created by ruangguru on 01/06/21.
+//  Created by Tifo Audi Alif Putra on 01/06/21.
 //
 
 import UIKit
@@ -13,10 +13,12 @@ protocol TopListViewController: AnyObject {
     func onCoinSelected()
 }
 
-final class DefaultTopListViewController: UITableViewController {
+final class DefaultTopListViewController: UITableViewController, URLSessionWebSocketDelegate {
     
     private var coins: [CoinData] = []
-    private var presenter: TopListPresenter
+    private let presenter: TopListPresenter
+    
+    private var socket: URLSessionWebSocketTask?
     
     private(set) var state: ViewState = .request {
         didSet {
@@ -36,6 +38,31 @@ final class DefaultTopListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        title = "Crypto"
+        
+        let streamURL: URL = .init(string: "wss://streamer.cryptocompare.com/v2?api_key=4c6ec4fa84b66963743a2a2ea291ec5e6216fe1c5453046f3b16c186878743b5")!
+        socket = URLSession(configuration: .default, delegate: self, delegateQueue: .init()).webSocketTask(with: streamURL)
+        socket?.resume()
+        
+        listen()
+    }
+    
+    func listen() {
+        socket?.receive(completionHandler: { result in
+            switch result {
+            case .success(let data):
+                print("DATA RECEIVED \(data)")
+                self.listen()
+            case .failure(let error):
+                print("ERRORRRR \(error)")
+            }
+        })
+    }
+    
+    func send(_ request: Data) {
+        socket?.send(.data(request), completionHandler: { (error: Error?) in
+            if error == nil { }
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,6 +88,14 @@ final class DefaultTopListViewController: UITableViewController {
         state = .request
         presenter.fetchTopList()
     }
+    
+    func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didOpenWithProtocol protocol: String?) {
+        
+    }
+    
+    func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didCloseWith closeCode: URLSessionWebSocketTask.CloseCode, reason: Data?) {
+        
+    }
 }
 
 extension DefaultTopListViewController {
@@ -82,6 +117,18 @@ extension DefaultTopListViewController {
             }
             
             cell.bindViewWith(coin: coins[indexPath.row])
+            
+            if indexPath.row == 0 {
+                
+                let subRequest: [String : Any] = [
+                    "action": "SubAdd",
+                    "subs": [coins[0].symbol]
+                ]
+                
+                let data = try! JSONEncoder().encode(SubRequest(subs: [coins[0].symbol]))
+                send(data)
+            }
+            
             return cell
         case .request:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: RequestStateCell.identifier, for: indexPath) as? RequestStateCell else {
@@ -90,6 +137,10 @@ extension DefaultTopListViewController {
             
             return cell
         }
+    }
+    
+    func dictToJson<T: Encodable>(_ dict: [String : T]) -> Data {
+        try! JSONEncoder().encode(dict)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -130,4 +181,9 @@ extension DefaultTopListViewController: TopListViewController {
         self.state = .error
         print(error.description)
     }
+}
+
+struct SubRequest: Encodable {
+    let action = "SubAdd"
+    let subs: [String]
 }

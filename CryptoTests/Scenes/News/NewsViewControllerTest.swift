@@ -2,7 +2,7 @@
 //  NewsViewControllerTest.swift
 //  CryptoTests
 //
-//  Created by ruangguru on 03/06/21.
+//  Created by Tifo Audi Alif Putra on 03/06/21.
 //
 
 @testable import Crypto

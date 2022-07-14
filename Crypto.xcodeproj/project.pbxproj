@@ -181,7 +181,6 @@
 			children = (
 				E076B1652667D2A300EFF2BA /* News Coin */,
 				E01E1752266679D300C98386 /* Top List */,
-				E01E1753266679DA00C98386 /* News */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -224,13 +223,6 @@
 				E076B14C2667BB1D00EFF2BA /* View */,
 			);
 			path = "Top List";
-			sourceTree = "<group>";
-		};
-		E01E1753266679DA00C98386 /* News */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = News;
 			sourceTree = "<group>";
 		};
 		E01E175426667A3800C98386 /* Service */ = {
