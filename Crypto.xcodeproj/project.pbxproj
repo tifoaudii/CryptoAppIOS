@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83AB349828851ECA007F7B7A /* TopListCoinListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AB349728851ECA007F7B7A /* TopListCoinListener.swift */; };
+		83D5FA472881B2F2000B11F1 /* PresentableCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D5FA462881B2F2000B11F1 /* PresentableCoin.swift */; };
 		E01E171E266676E100C98386 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01E171D266676E100C98386 /* AppDelegate.swift */; };
 		E01E1720266676E100C98386 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01E171F266676E100C98386 /* SceneDelegate.swift */; };
 		E01E1722266676E100C98386 /* TopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01E1721266676E100C98386 /* TopListViewController.swift */; };
@@ -54,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		83AB349728851ECA007F7B7A /* TopListCoinListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopListCoinListener.swift; sourceTree = "<group>"; };
+		83D5FA462881B2F2000B11F1 /* PresentableCoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentableCoin.swift; sourceTree = "<group>"; };
 		E01E171A266676E100C98386 /* Crypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E01E171D266676E100C98386 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E01E171F266676E100C98386 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -317,6 +321,7 @@
 				E076B1682667D2CB00EFF2BA /* Presenter */,
 				E076B1672667D2C700EFF2BA /* Cell */,
 				E076B1662667D2C300EFF2BA /* View */,
+				83AB349728851ECA007F7B7A /* TopListCoinListener.swift */,
 			);
 			path = "News Coin";
 			sourceTree = "<group>";
@@ -341,6 +346,7 @@
 			isa = PBXGroup;
 			children = (
 				E076B16C2667D4DE00EFF2BA /* NewsPresenter.swift */,
+				83D5FA462881B2F2000B11F1 /* PresentableCoin.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -476,7 +482,9 @@
 			files = (
 				E01E1722266676E100C98386 /* TopListViewController.swift in Sources */,
 				E076B1522667BB8800EFF2BA /* TopListPresenter.swift in Sources */,
+				83D5FA472881B2F2000B11F1 /* PresentableCoin.swift in Sources */,
 				E076B14B26678E6700EFF2BA /* UIStackViewHelper.swift in Sources */,
+				83AB349828851ECA007F7B7A /* TopListCoinListener.swift in Sources */,
 				E076B16D2667D4DE00EFF2BA /* NewsPresenter.swift in Sources */,
 				E076B1562667BEF500EFF2BA /* RequestStateCell.swift in Sources */,
 				E01E175926667B2100C98386 /* NewsResponse.swift in Sources */,

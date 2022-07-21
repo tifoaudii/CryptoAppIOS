@@ -12,9 +12,9 @@ protocol NetworkDataStore {
     func fetchNews(success: @escaping (NewsResponse) -> Void, failure: @escaping (ErrorResponse) -> Void)
 }
 
-final class DefautNetworkDataStore: NetworkDataStore {
+final class URLSessionDataStore: NetworkDataStore {
     
-    private var baseURL: String = "https://min-api.cryptocompare.com/data"
+    private let baseURL: String = "https://min-api.cryptocompare.com/data"
     private let urlSession = URLSession.shared
     
     private enum Endpoint {
@@ -63,7 +63,7 @@ final class DefautNetworkDataStore: NetworkDataStore {
                     success(coinResponse)
                 }
                 
-            } catch let error {
+            } catch {
                 DispatchQueue.main.async {
                     failure(.serializationError)
                 }

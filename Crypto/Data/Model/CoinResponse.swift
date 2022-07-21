@@ -22,6 +22,10 @@ struct CoinData: Codable {
     var symbol: String {
         "2~Binance~\(coinInfo.name)~USDT"
     }
+    
+    static var streamURL: URL {
+        .init(string: "wss://streamer.cryptocompare.com/v2?api_key=4c6ec4fa84b66963743a2a2ea291ec5e6216fe1c5453046f3b16c186878743b5")!
+    }
 }
 
 // MARK: - CoinInfo

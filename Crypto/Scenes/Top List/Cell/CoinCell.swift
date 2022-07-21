@@ -88,18 +88,11 @@ final class CoinCell: UITableViewCell {
         )
     }
     
-    func bindViewWith(coin: CoinData) {
-        coinCodeLabel.text = coin.coinInfo.name
-        coinNameLabel.text = coin.coinInfo.fullName
-        
-        let price: Double = coin.raw?.usd.price ?? 0.0
-        let openDay: Double = coin.raw?.usd.openday ?? 0.0
-        let updatePrice: Double = round((price - openDay) * 100) / 100
-        let percentageUpdatePrice: Double = round((updatePrice / openDay) * 10000) / 100
-        let symbolUpdate: String = (price < openDay) ? "" : "+"
-        
-        coinPriceLabel.text = "\(price)"
-        coinUpdateLabel.text = "\(symbolUpdate)\(updatePrice)(\(percentageUpdatePrice)%)"
-        coinUpdateLabel.backgroundColor = (price < openDay) ? .red : .systemGreen
+    func bindViewWith(coin: PresentableCoin) {
+        coinCodeLabel.text = coin.name
+        coinNameLabel.text = coin.fullname
+        coinPriceLabel.text = "\(coin.price)"
+        coinUpdateLabel.text = coin.makePresentableUpdatedCoin()
+        coinUpdateLabel.backgroundColor = (coin.price < coin.openDay) ? .red : .systemGreen
     }
 }

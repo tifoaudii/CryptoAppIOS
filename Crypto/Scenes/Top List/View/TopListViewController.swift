@@ -8,15 +8,16 @@
 import UIKit
 
 protocol TopListViewController: AnyObject {
-    func showCoins(data: [CoinData])
+    func showCoins(data: [PresentableCoin])
     func showErrorMessage(error: ErrorResponse)
     func onCoinSelected()
 }
 
 final class DefaultTopListViewController: UITableViewController, URLSessionWebSocketDelegate {
     
-    private var coins: [CoinData] = []
+    private var coins: [PresentableCoin] = []
     private let presenter: TopListPresenter
+    private let coinListener: LiveCoinListener
     
     private var socket: URLSessionWebSocketTask?
     
@@ -26,8 +27,9 @@ final class DefaultTopListViewController: UITableViewController, URLSessionWebSo
         }
     }
     
-    init(presenter: TopListPresenter) {
+    init(presenter: TopListPresenter, coinListener: LiveCoinListener) {
         self.presenter = presenter
+        self.coinListener = coinListener
         super.init(style: .plain)
     }
     
@@ -37,37 +39,44 @@ final class DefaultTopListViewController: UITableViewController, URLSessionWebSo
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTableView()
         title = "Crypto"
-        
-        let streamURL: URL = .init(string: "wss://streamer.cryptocompare.com/v2?api_key=4c6ec4fa84b66963743a2a2ea291ec5e6216fe1c5453046f3b16c186878743b5")!
-        socket = URLSession(configuration: .default, delegate: self, delegateQueue: .init()).webSocketTask(with: streamURL)
-        socket?.resume()
-        
-        listen()
+        configureTableView()
+        configureCoinListener()
     }
     
-    func listen() {
-        socket?.receive(completionHandler: { result in
-            switch result {
-            case .success(let data):
-                print("DATA RECEIVED \(data)")
-                self.listen()
-            case .failure(let error):
-                print("ERRORRRR \(error)")
-            }
-        })
-    }
-    
-    func send(_ request: Data) {
-        socket?.send(.data(request), completionHandler: { (error: Error?) in
-            if error == nil { }
-        })
+    private func configureCoinListener() {
+        coinListener.connect()
+        coinListener.onListen()
+        coinListener.newData = { [weak self] price, symbol in
+            guard let self = self else { return }
+            self.updateCoin(newPrice: price, from: symbol)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter.fetchTopList()
+    }
+    
+    func updateCoin(newPrice: Double, from symbol: String) {
+        if let updatedIndex = self.coins.firstIndex(where: { $0.name == symbol }) {
+            let coin = self.coins[updatedIndex]
+            coin.updatePrice(newPrice)
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadRows(at: [.init(row: updatedIndex, section: 0)], with: .fade)
+            }
+        }
+    }
+    
+    func sendRequest() {
+        if let visibleIndexPaths = tableView.indexPathsForVisibleRows {
+            let coinSymbols = visibleIndexPaths.map {
+                self.coins[$0.row].symbol
+            }
+            
+            coinListener.send(coinSymbols)
+        }
     }
     
     private func configureTableView() {
@@ -87,14 +96,6 @@ final class DefaultTopListViewController: UITableViewController, URLSessionWebSo
     @objc private func onRefreshControlHandled() {
         state = .request
         presenter.fetchTopList()
-    }
-    
-    func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didOpenWithProtocol protocol: String?) {
-        
-    }
-    
-    func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didCloseWith closeCode: URLSessionWebSocketTask.CloseCode, reason: Data?) {
-        
     }
 }
 
@@ -117,18 +118,6 @@ extension DefaultTopListViewController {
             }
             
             cell.bindViewWith(coin: coins[indexPath.row])
-            
-            if indexPath.row == 0 {
-                
-                let subRequest: [String : Any] = [
-                    "action": "SubAdd",
-                    "subs": [coins[0].symbol]
-                ]
-                
-                let data = try! JSONEncoder().encode(SubRequest(subs: [coins[0].symbol]))
-                send(data)
-            }
-            
             return cell
         case .request:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: RequestStateCell.identifier, for: indexPath) as? RequestStateCell else {
@@ -137,10 +126,6 @@ extension DefaultTopListViewController {
             
             return cell
         }
-    }
-    
-    func dictToJson<T: Encodable>(_ dict: [String : T]) -> Data {
-        try! JSONEncoder().encode(dict)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -158,32 +143,48 @@ extension DefaultTopListViewController {
         
         presenter.didSelectCoin()
     }
+    
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        coinListener.cancel()
+    }
+    
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            coinListener.resume()
+            sendRequest()
+            coinListener.onListen()
+        }
+    }
+    
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        coinListener.resume()
+        sendRequest()
+        coinListener.onListen()
+    }
 }
 
 
 extension DefaultTopListViewController: TopListViewController {
     func onCoinSelected() {
-        let service = CryptoService(dataStore: DefautNetworkDataStore())
+        let service = CryptoService(dataStore: URLSessionDataStore())
         let presenter = DefaultNewsPresenter(service: service)
         let newsViewController = DefaultNewsViewController(presenter: presenter)
         presenter.setViewController(newsViewController)
         present(newsViewController, animated: true, completion: nil)
     }
     
-    func showCoins(data: [CoinData]) {
+    func showCoins(data: [PresentableCoin]) {
         tableView.refreshControl?.endRefreshing()
         self.coins = data
         self.state = .populated
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.sendRequest()
+        }
     }
     
     func showErrorMessage(error: ErrorResponse) {
         tableView.refreshControl?.endRefreshing()
         self.state = .error
-        print(error.description)
     }
-}
-
-struct SubRequest: Encodable {
-    let action = "SubAdd"
-    let subs: [String]
 }

@@ -27,7 +27,18 @@ final class DefaultTopListPresenter: TopListPresenter {
     
     func fetchTopList() {
         service.fetchTopList { [weak self] (coins: [CoinData]) in
-            self?.viewController?.showCoins(data: coins)
+            let presentableCoins: [PresentableCoin] = coins.enumerated().map { (index: Int, coin: CoinData) in
+                return PresentableCoin(
+                    index: index,
+                    name: coin.coinInfo.name,
+                    fullname: coin.coinInfo.fullName,
+                    symbol: coin.symbol,
+                    price: coin.raw?.usd.price,
+                    openDay: coin.raw?.usd.openday
+                )
+            }
+            
+            self?.viewController?.showCoins(data: presentableCoins)
         } failure: { [weak self] (error: ErrorResponse) in
             self?.viewController?.showErrorMessage(error: error)
         }
